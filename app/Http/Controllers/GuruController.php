@@ -104,15 +104,35 @@ class GuruController extends Controller
     public function nilaiUpdate(Request $request, $id)
     {
         $request->validate([
-            'siswa_id' => 'required',
             'mata_pelajaran' => 'required',
-            'nilai' => 'required|numeric|min:0|max:100'
+            'nilai_harian' => 'required|numeric|min:0|max:100',
+            'ulangan_harian_1' => 'required|numeric|min:0|max:100',
+            'ulangan_harian_2' => 'required|numeric|min:0|max:100',
+            'nilai_akhir_semester' => 'required|numeric|min:0|max:100',
         ]);
-
+    
         $nilai = Nilai::findOrFail($id);
-        $nilai->update($request->all());
-
-        return redirect()->route('guru.nilai.index')->with('success', 'Nilai berhasil diperbarui');
+        
+        // Calculate average
+        $nilaiArray = [
+            $request->nilai_harian,
+            $request->ulangan_harian_1,
+            $request->ulangan_harian_2,
+            $request->nilai_akhir_semester
+        ];
+        $rata_rata = array_sum($nilaiArray) / count($nilaiArray);
+    
+        $nilai->update([
+            'mata_pelajaran' => $request->mata_pelajaran,
+            'nilai_harian' => $request->nilai_harian,
+            'ulangan_harian_1' => $request->ulangan_harian_1,
+            'ulangan_harian_2' => $request->ulangan_harian_2,
+            'nilai_akhir_semester' => $request->nilai_akhir_semester,
+            'rata_rata' => $rata_rata,
+            'keterangan' => $request->keterangan
+        ]);
+    
+        return redirect()->route('guru.nilai.index')->with('success', 'Nilai berhasil diupdate');
     }
 
     public function nilaiDestroy($id)
@@ -121,5 +141,31 @@ class GuruController extends Controller
         $nilai->delete();
 
         return redirect()->route('guru.nilai.index')->with('success', 'Nilai berhasil dihapus');
+    }
+
+    public function editSiswa(Siswa $siswa)
+    {
+        return view('guru.siswa.edit', compact('siswa'));
+    }
+
+    public function updateSiswa(Request $request, Siswa $siswa)
+    {
+        $request->validate([
+            'nis' => 'required|unique:siswas,nis,' . $siswa->id,
+            'nama' => 'required',
+            'kelas' => 'required',
+            'jenis_kelamin' => 'required',
+            'email' => 'required|email|unique:siswas,email,' . $siswa->id,
+        ]);
+    
+        $siswa->update($request->all());
+    
+        return redirect()->route('guru.siswa.index')->with('success', 'Data siswa berhasil diupdate');
+    }
+
+    public function destroySiswa(Siswa $siswa)
+    {
+        $siswa->delete();
+        return redirect()->route('guru.siswa.index')->with('success', 'Data siswa berhasil dihapus');
     }
 }

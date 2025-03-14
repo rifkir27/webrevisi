@@ -11,6 +11,11 @@
                 <div class="card">
                     <div class="card-header">Login</div>
                     <div class="card-body">
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="mb-3">
@@ -20,13 +25,6 @@
                             <div class="mb-3">
                                 <label>Password</label>
                                 <input type="password" name="password" class="form-control" required>
-                            </div>
-                            <div class="mb-3">
-                                <label>Login Sebagai</label>
-                                <select name="role" class="form-control" required>
-                                    <option value="guru">Guru</option>
-                                    <option value="siswa">Siswa</option>
-                                </select>
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>

@@ -22,6 +22,9 @@ Route::prefix('guru')->middleware(['auth:guru'])->group(function () {
     Route::get('/siswa', [GuruController::class, 'siswaIndex'])->name('guru.siswa.index');
     Route::get('/siswa/create', [GuruController::class, 'siswaCreate'])->name('guru.siswa.create');
     Route::post('/siswa', [GuruController::class, 'siswaStore'])->name('guru.siswa.store');
+    Route::get('/siswa/{siswa}/edit', [GuruController::class, 'editSiswa'])->name('guru.siswa.edit');
+    Route::put('/siswa/{siswa}', [GuruController::class, 'updateSiswa'])->name('guru.siswa.update');
+    Route::delete('/siswa/{siswa}', [GuruController::class, 'destroySiswa'])->name('guru.siswa.destroy');
     
     // Nilai Management
     Route::get('/nilai', [GuruController::class, 'nilaiIndex'])->name('guru.nilai.index');
@@ -31,6 +34,8 @@ Route::prefix('guru')->middleware(['auth:guru'])->group(function () {
     Route::get('/nilai/{id}/edit', [GuruController::class, 'nilaiEdit'])->name('guru.nilai.edit');
     Route::put('/nilai/{id}', [GuruController::class, 'nilaiUpdate'])->name('guru.nilai.update');
     Route::delete('/nilai/{id}', [GuruController::class, 'nilaiDestroy'])->name('guru.nilai.destroy');
+    Route::get('/guru/siswa/{siswa}/edit', [GuruController::class, 'editSiswa'])->name('guru.siswa.edit');
+    Route::put('/guru/siswa/{siswa}', [GuruController::class, 'updateSiswa'])->name('guru.siswa.update');
 });
 
 // Siswa Routes
@@ -38,6 +43,3 @@ Route::prefix('siswa')->middleware(['auth:siswa'])->group(function () {
     Route::get('/dashboard', [SiswaController::class, 'dashboard'])->name('siswa.dashboard');
 });
 
-// Add these routes with the other authentication routes
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'register']);
