@@ -3,6 +3,66 @@
 <head>
     <title>Dashboard Guru</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+        }
+        .navbar {
+            background-color: #1a4f7a !important;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-primary {
+            background-color: #2c6ca0;
+            border-color: #2c6ca0;
+        }
+        .btn-primary:hover {
+            background-color: #1a4f7a;
+            border-color: #1a4f7a;
+        }
+        .btn-success {
+            background-color: #3c8dbc;
+            border-color: #3c8dbc;
+        }
+        .btn-success:hover {
+            background-color: #2c6ca0;
+            border-color: #2c6ca0;
+        }
+        .btn-info {
+            background-color: #5ba4d6;
+            border-color: #5ba4d6;
+        }
+        .btn-info:hover {
+            background-color: #3c8dbc;
+            border-color: #3c8dbc;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: white !important;
+        }
+        .display-4 {
+            color: #1a4f7a;
+        }
+        h2 {
+            color: #2c6ca0;
+        }
+        .card-title {
+            color: #1a4f7a;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

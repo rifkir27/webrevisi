@@ -23,6 +23,7 @@
                         <th>No</th>
                         <th>NIS</th>
                         <th>Nama</th>
+                        <th>Jenis Kelamin</th>
                         <th>Kelas</th>
                         <th>Email</th>
                         <th>Aksi</th>
@@ -34,10 +35,17 @@
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $siswa->nis }}</td>
                         <td>{{ $siswa->nama }}</td>
+                        <td>{{ $siswa->jenis_kelamin }}</td>
                         <td>{{ $siswa->kelas }}</td>
                         <td>{{ $siswa->email }}</td>
                         <td>
-                            <a href="{{ route('guru.nilai.create', ['siswa_id' => $siswa->id]) }}" class="btn btn-sm btn-success">Input Nilai</a>
+                           
+                            <a href="{{ route('guru.siswa.edit', $siswa->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ route('guru.siswa.destroy', $siswa->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus siswa ini?')">Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

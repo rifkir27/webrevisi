@@ -22,12 +22,13 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Siswa</th>
+                        <th>Jenis Kelamin</th>
                         <th>Kelas</th>
                         <th>Mata Pelajaran</th>
                         <th>Nilai Harian</th>
                         <th>UH 1</th>
                         <th>UH 2</th>
-                        <th>Nilai Akhir</th>
+                        <th>Nilai Akhir Semester</th>
                         <th>Rata-rata</th>
                         <th>Keterangan</th>
                         <th>Aksi</th>
@@ -38,6 +39,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $n->siswa->nama }}</td>
+                        <td>{{ $n->siswa->jenis_kelamin }}</td>
                         <td>{{ $n->siswa->kelas }}</td>
                         <td>{{ $n->mata_pelajaran }}</td>
                         <td>{{ $n->nilai_harian }}</td>
@@ -45,7 +47,7 @@
                         <td>{{ $n->ulangan_harian_2 }}</td>
                         <td>{{ $n->nilai_akhir_semester }}</td>
                         <td>{{ number_format($n->rata_rata, 2) }}</td>
-                        <td>{{ $n->keterangan }}</td>
+                      
                         <td>
                             <a href="{{ route('guru.nilai.edit', $n->id) }}" class="btn btn-sm btn-warning">Edit</a>
                             <form action="{{ route('guru.nilai.destroy', $n->id) }}" method="POST" class="d-inline">

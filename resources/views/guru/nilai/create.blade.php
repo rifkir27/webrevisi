@@ -27,7 +27,7 @@
                         <select name="siswa_id" class="form-control" required>
                             <option value="">Pilih Siswa</option>
                             @foreach($siswas as $siswa)
-                                <option value="{{ $siswa->id }}">{{ $siswa->nama }} - {{ $siswa->kelas }}</option>
+                                <option value="{{ $siswa->id }}">{{ $siswa->nama }} - {{ $siswa->jenis_kelamin }} - {{ $siswa->kelas }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -39,8 +39,11 @@
                             <option value="Matematika">Matematika</option>
                             <option value="Bahasa Indonesia">Bahasa Indonesia</option>
                             <option value="Bahasa Inggris">Bahasa Inggris</option>
-                            <option value="IPA">IPA</option>
-                            <option value="IPS">IPS</option>
+                            <option value="Bahasa Sunda">Bahasa Sunda</option>
+                            <option value="Sejarah">Sejarah</option>
+                            <option value="Kewarganegaraan">Pendidikan Pancasila</option>
+                            <option value="Geografi">P5</option>
+
                         </select>
                     </div>
 
@@ -69,10 +72,7 @@
                         <input type="number" name="rata_rata" class="form-control" readonly>
                     </div>
 
-                    <div class="mb-3">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control" rows="3"></textarea>
-                    </div>
+                
 
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <a href="{{ route('guru.nilai.index') }}" class="btn btn-secondary">Kembali</a>
