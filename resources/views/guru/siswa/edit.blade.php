@@ -1,5 +1,5 @@
 @extends('layouts.guru')
-
+@include('layouts.styles')
 @section('title', 'Edit Siswa')
 
 @section('content')
